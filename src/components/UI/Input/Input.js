@@ -5,7 +5,7 @@ const input = (props) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     
-    if(props.invalid && props.shouldValidate){ //shouldValidate  is for delivery Dropdown
+    if(props.invalid && props.shouldValidate && props.touched){ //shouldValidate  is for delivery Dropdown
         inputClasses.push(classes.Invalid);
     }
 
