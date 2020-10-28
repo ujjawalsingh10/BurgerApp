@@ -11,7 +11,6 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import * as actionTypes from '../../store/actions';
 
-
 class BurgerBuilder extends Component {
     // constructor(props) {
     //     super(props);
@@ -25,7 +24,7 @@ class BurgerBuilder extends Component {
 
     componentDidMount () {
         console.log(this.props);
-        // axios.get( 'https://react-my-burger-cf133.firebaseio.com//ingredients.json' )
+        // axios.get( 'https://react-my-burger.firebaseio.com/ingredients.json' )
         //     .then( response => {
         //         this.setState( { ingredients: response.data } );
         //     } )
@@ -42,7 +41,7 @@ class BurgerBuilder extends Component {
             .reduce( ( sum, el ) => {
                 return sum + el;
             }, 0 );
-        this.setState( { purchasable: sum > 0 } );
+        return sum > 0;
     }
 
     purchaseHandler = () => {
@@ -103,15 +102,15 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings : state.ingredients,
+        ings: state.ingredients,
         price: state.totalPrice
-    }
-};
+    };
+}
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, IngredientName: ingName}),
-        onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
+        onIngredientAdded: (ingName) => dispatch({type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
+        onIngredientRemoved: (ingName) => dispatch({type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
     }
 }
 
